@@ -35,10 +35,67 @@ function soat() {
     setTimeout(()=>{
         soat()
     },1000)
-    
 
 }
 soat()
 
+// sekundnomer
+
+document.addEventListener("DOMContentLoaded", function () {
+    
+    let stopwatchBtn = document.querySelector('.stopwatch__btn');
+    let stopwatchClock = document.querySelector('.stopwatch__clock');
+    let stopwatchAudio = document.querySelector('.stopwatch__audio');
+
+    let isRunning = false;
+    let interval;
+
+
+    stopwatchBtn.addEventListener('click', function () {
+        if (isRunning) {
+           
+            clearInterval(interval);
+            isRunning = false;
+        } else {
+      
+            interval = setInterval(function () {
+                updateStopwatch();
+            }, 1000);
+            isRunning = true;
+        }
+    });
+
+    
+    function updateStopwatch() {
+        var secondsElement = document.querySelector('.stopwatch__seconds');
+        var minutesElement = document.querySelector('.stopwatch__minutes');
+        var hoursElement = document.querySelector('.stopwatch__hours');
+
+        let seconds = parseInt(secondsElement.textContent);
+        let minutes = parseInt(minutesElement.textContent);
+        let hours = parseInt(hoursElement.textContent);
+
+        seconds++;
+
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+
+            if (minutes === 60) {
+                minutes = 0;
+                hours++;
+
+                if (hours === 24) {
+                    hours = 0;
+                }
+            }
+        }
+
+      
+        secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+        minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+        hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+    }
+});
 
 
