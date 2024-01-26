@@ -99,8 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-
 // kalkulyator
 
 let clickBtns = document.querySelectorAll('.calc__btn');
