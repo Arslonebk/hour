@@ -99,3 +99,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+
+// kalkulyator
+
+let clickBtns = document.querySelectorAll('.calc__btn');
+let clickScreenOut = document.querySelector('.calc__screen-out');
+
+let string = "";
+let arr = Array.from(clickBtns)
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        console.log('salom');
+        if (e.target.innerHTML == '=') {
+            string = eval(string);
+            clickScreenOut.innerHTML = string;
+        }else if(e.target.innerHTML== "ac"){
+            string = "";
+            clickScreenOut.innerHTML = string;
+        }else if(e.target.innerHTML == "ce"){
+            string = string.substring(0, string.length-1);
+            clickScreenOut.innerHTML = string;
+        }else{
+            string += e.target.innerHTML;
+            clickScreenOut.innerHTML = string;
+        }
+    })
+})
+
